@@ -8,7 +8,11 @@
 */
 #include<iostream>
 using namespace std;
-
+typedef struct snodo
+{
+    int valor;
+    struct snodo *izq, *der;
+}tnodo;
 int main(int argc, char const *argv[]) {
 
     return 0;
