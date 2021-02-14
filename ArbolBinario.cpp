@@ -6,6 +6,7 @@
     Fecha de creacion: 12/02/2021
 	....................................
 */
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 
