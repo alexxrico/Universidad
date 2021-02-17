@@ -1,3 +1,4 @@
+
 /*
 	...Estructuras de datos avanzadas...
 	Tema: Arboles binarios de busqueda
@@ -6,9 +7,9 @@
     Fecha de creacion: 12/02/2021
 	....................................
 */
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
+#include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
 
 typedef struct snodo
 {
@@ -25,10 +26,11 @@ tnodo *minimo(void);
 tnodo *maximo(void);
 
 int eliminar(int x);
-int altura(tnodo nodo);
+int altura(tnodo *nodo);
 
 int main(int argc, const char * argv[]) {
     int x, y,z,opc;
+    int n;
     tnodo *xb;
         do{
             printf("\n1) Insertar \n2) Buscar \n3) Eliminar \n4) Minimo \n5) Maximo\n6) Altura \n7) Salir\nOpcion:");
@@ -37,9 +39,9 @@ int main(int argc, const char * argv[]) {
             {
                 case 1: printf("\nValor  insertar: "); scanf("%i", &x);
                         if(insertar(x)==1)
-                            printf("\nSi se pudo insertar");
+                            printf("\nSi se pudo insertar\n");
                         else
-                            printf("\nEl numero ya fue agregado");
+                            printf("\nEl numero ya fue agregado\n");
                         break;
                 case 2: printf("\nValor  buscar: "); scanf("%i", &x);
                         xb=buscar(x);
@@ -70,18 +72,42 @@ int main(int argc, const char * argv[]) {
                         printf("\nNo hay maximo, esta vacio");
                     break;
                 case 6:{
-
+                    if(arbol==NULL){
+                        printf("El arbol esta vacio!\n");
+                    }else{
+                        printf("La altura del arbol es: %i",altura(arbol)-1);
+                        /*
+                        printf("Ingrese un nodo: \n");
+                        scanf("%d",&n);
+                        xb=buscar(n);
+                        if(xb==NULL){
+                            printf("El nodo no se encontro\n");
+                        }else{
+                            x=altura(xb);
+                            printf("La altura del nodo es: %d",x);
+                        }
+                        */
+                    }
                   break;
                 }
-
             }
+            printf("\n");
+            system("pause");
+            system("cls");
         }while(opc!=7);
-
 }
-int altura(tnodo nodo){
-    int x;
-
-    return x;
+int altura(tnodo *actual){
+    int ai=0, ad=0, a=0;
+    if(actual!=NULL){
+        ai=altura(actual->izq);
+        ad=altura(actual->der);
+        if(ai>ad){
+            a=1+ad;
+        }else{
+            a=1+ai;
+        }
+    }
+    return a;
 }
 int insertar(int x)
 {
