@@ -75,18 +75,16 @@ int main(int argc, const char * argv[]) {
                     if(arbol==NULL){
                         printf("El arbol esta vacio!\n");
                     }else{
-                        printf("La altura del arbol es: %i",altura(arbol)-1);
-                        /*
                         printf("Ingrese un nodo: \n");
-                        scanf("%d",&n);
+                        scanf("%i",&n);
                         xb=buscar(n);
                         if(xb==NULL){
                             printf("El nodo no se encontro\n");
                         }else{
                             x=altura(xb);
-                            printf("La altura del nodo es: %d",x);
+                            printf("La altura del nodo es: %i",x-1);
                         }
-                        */
+                        
                     }
                   break;
                 }
@@ -96,15 +94,15 @@ int main(int argc, const char * argv[]) {
             system("cls");
         }while(opc!=7);
 }
-int altura(tnodo *actual){
+int altura(tnodo *actual){ //Altura de un nodo
     int ai=0, ad=0, a=0;
     if(actual!=NULL){
         ai=altura(actual->izq);
         ad=altura(actual->der);
         if(ai>ad){
-            a=1+ad;
-        }else{
             a=1+ai;
+        }else{
+            a=1+ad;
         }
     }
     return a;
