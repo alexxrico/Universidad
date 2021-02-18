@@ -29,6 +29,7 @@ int eliminar(int x);
 int altura(tnodo *nodo);
 int fe(tnodo *actual);
 void balanceo(tnodo *actual);
+void imprimir(tnodo *x);
 void rsi(tnodo *actual);
 void rdi(tnodo *actual);
 void rsd(tnodo *actual);
@@ -39,7 +40,7 @@ int main(int argc, const char * argv[]) {
     int n;
     tnodo *xb;
         do{
-            printf("\n1) Insertar \n2) Buscar \n3) Eliminar \n4) Minimo \n5) Maximo\n6) Altura \n7) Salir\nOpcion:");
+            printf("\n1) Insertar \n2) Buscar \n3) Eliminar \n4) Minimo \n5) Maximo\n6) Altura\n7) Imprimir \n8) Salir\nOpcion:");
             scanf("%i",&opc);
             switch(opc)
             {
@@ -94,11 +95,18 @@ int main(int argc, const char * argv[]) {
                     }
                   break;
                 }
+                case 7:{
+                    if(arbol==NULL){
+                        printf("\nEl arbol esta vacio...");
+                    }else{
+                        imprimir(arbol);
+                    }
+                }
             }
             printf("\n");
             system("pause");
             system("cls");
-        }while(opc!=7);
+        }while(opc!=8);
 }
 int fe(tnodo *actual){ //Factor de equilibrio
     int a=0;
@@ -247,30 +255,11 @@ void rsi(tnodo *actual){ //Tiene errores al hacer la rotacion
     rp=actual->der;
     rp->papa=actual->papa;
     rp->izq=actual;
-    temp2=rp->izq;
-    actual->papa->der=rp;
-    actual->papa=rp;
-    /*
-    rp=actual->der;
-    rp->papa=actual->papa;
-    
-    rp->izq=actual;
-    temp2=rp->izq;
-    
-    actual->der=temp2;
-    actual->papa=rp;
-    temp2->papa=actual;
-
+    actual->der=NULL;
     if(rp->papa==NULL){
         arbol=rp;
-    }else{
-        if(rp->papa->valor < rp->valor){
-            rp->papa->der=rp;
-        }else{
-            rp->papa->izq=rp;
-        }
     }
-    */
+    printf("\t %i",arbol->valor);
 }
 void rdi(tnodo *actual){
     printf("\nRotacion doble a la izquierda");
@@ -281,6 +270,17 @@ void rsd(tnodo *actual){
 }
 void rdd(tnodo *actual){
     printf("\nRotacion doble a la derecha");
+}
+void imprimir(tnodo *x){
+    if(x!=NULL){
+        printf(" %i ", x->valor);
+        printf("Izq: ");
+        imprimir(x->izq);
+        printf("Derecho: ");
+        imprimir(x->der);
+    }else{
+        printf("---\n");
+    }
 }
 
 
