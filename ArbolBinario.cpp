@@ -27,6 +27,7 @@ tnodo *maximo(void);
 
 int eliminar(int x);
 int altura(tnodo *nodo);
+int fe(tnodo *actual);
 
 int main(int argc, const char * argv[]) {
     int x, y,z,opc;
@@ -83,8 +84,8 @@ int main(int argc, const char * argv[]) {
                         }else{
                             x=altura(xb);
                             printf("La altura del nodo es: %i",x-1);
+                            printf("\nEl factor de equilibrio del nodo es: %i",fe(xb));
                         }
-                        
                     }
                   break;
                 }
@@ -93,6 +94,21 @@ int main(int argc, const char * argv[]) {
             system("pause");
             system("cls");
         }while(opc!=7);
+}
+int fe(tnodo *actual){ //Factor de equilibrio
+    int a=0;
+    if(actual!=NULL){
+        if(actual->der!=NULL && actual->izq!=NULL){
+            a= altura(actual->der)-altura(actual->izq);
+        }
+        if(actual->der!=NULL && actual->izq==NULL){
+            a =altura(actual->der);
+        }
+        if(actual->der==NULL && actual->izq!=NULL){
+            a = 0 - altura(actual->izq);
+        }
+    }
+    return a;
 }
 int altura(tnodo *actual){ //Altura de un nodo
     int ai=0, ad=0, a=0;
