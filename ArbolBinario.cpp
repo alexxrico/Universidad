@@ -14,7 +14,7 @@
 typedef struct snodo
 {
     int valor;
-    struct snodo *izq, *der;
+    struct snodo *izq, *der, *papa;
 }tnodo;
 
 tnodo *arbol=NULL, *aux2=NULL;
@@ -28,6 +28,11 @@ tnodo *maximo(void);
 int eliminar(int x);
 int altura(tnodo *nodo);
 int fe(tnodo *actual);
+void balanceo(tnodo *actual);
+void rsi(tnodo *actual);
+void rdi(tnodo *actual);
+void rsd(tnodo *actual);
+void rdd(tnodo *actual);
 
 int main(int argc, const char * argv[]) {
     int x, y,z,opc;
@@ -123,33 +128,36 @@ int altura(tnodo *actual){ //Altura de un nodo
     }
     return a;
 }
-int insertar(int x)
-{
+int insertar(int x){
     tnodo *n1;
     int pude=0;
     n1 = buscar(x);
     if(n1==NULL)
     {
         n1 = (tnodo *)malloc(sizeof(tnodo));
-        if(n1!=NULL)
-        {
+        if(n1!=NULL){
             n1->valor = x;
             n1->der = NULL;
             n1->izq=NULL;
+            n1->papa=NULL;
             if(arbol==NULL)
                 arbol=n1;
-            else if(x < aux2->valor  )
+            else if(x < aux2->valor  ){
                 aux2->izq = n1;
-            else
+                n1->papa=aux2;
+            }   
+            else{
                 aux2->der = n1;
+                n1->papa=aux2;
+            }
             pude = 1;
+            balanceo(n1);
         }
     }
     return pude;
 }
 
-tnodo * buscar(int x)
-{
+tnodo * buscar(int x){
     tnodo *aux;
     aux =arbol;
     aux2=NULL;
@@ -165,8 +173,7 @@ tnodo * buscar(int x)
     }
     return aux;
 }
-tnodo * minimo(void)
-{
+tnodo * minimo(void){
     tnodo *aux;
     aux =arbol;
     aux2=NULL;
@@ -177,8 +184,7 @@ tnodo * minimo(void)
     }
     return aux2;
 }
-tnodo * maximo(void)
-{
+tnodo * maximo(void){
     tnodo *aux;
     aux =arbol;
     aux2=NULL;
@@ -216,3 +222,67 @@ int eliminar(int x){
 		return 1;
 	}
 }
+void balanceo(tnodo *actual){
+    int fe1;
+    tnodo *aux;
+    aux=actual->papa;
+    while(aux!=NULL){
+        fe1=fe(aux);
+        printf("\nRevisando el valor: %i con FE: %i",aux->valor,fe1);
+        if(fe1<=-2 && fe(aux->izq)<0){ // Rotacion simple a la derecha
+            rsd(aux);
+        }if(fe1<=-2 && fe(aux->izq)>=0){ 
+            rdd(aux);
+        }if(fe1>=2 && fe(aux->der)>=0){
+            rsi(aux);
+        }if(fe1>=2 && fe(aux->der)<0){
+            rdi(aux);
+        }
+        aux=aux->papa;
+    }
+}
+void rsi(tnodo *actual){ //Tiene errores al hacer la rotacion
+    tnodo *rp, *temp2;
+    printf("\nRotacion simple a la izquierda");
+    rp=actual->der;
+    rp->papa=actual->papa;
+    rp->izq=actual;
+    temp2=rp->izq;
+    actual->papa->der=rp;
+    actual->papa=rp;
+    /*
+    rp=actual->der;
+    rp->papa=actual->papa;
+    
+    rp->izq=actual;
+    temp2=rp->izq;
+    
+    actual->der=temp2;
+    actual->papa=rp;
+    temp2->papa=actual;
+
+    if(rp->papa==NULL){
+        arbol=rp;
+    }else{
+        if(rp->papa->valor < rp->valor){
+            rp->papa->der=rp;
+        }else{
+            rp->papa->izq=rp;
+        }
+    }
+    */
+}
+void rdi(tnodo *actual){
+    printf("\nRotacion doble a la izquierda");
+}
+void rsd(tnodo *actual){
+    printf("\nRotacion simple a la derecha");
+
+}
+void rdd(tnodo *actual){
+    printf("\nRotacion doble a la derecha");
+}
+
+
+
+
