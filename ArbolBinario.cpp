@@ -258,6 +258,9 @@ void rsi(tnodo *actual){ //Tiene errores al hacer la rotacion
     actual->der=NULL;
     if(rp->papa==NULL){
         arbol=rp;
+    }else{
+        actual->papa->der=rp;
+        actual->papa=rp;
     }
     printf("\t %i",arbol->valor);
 }
