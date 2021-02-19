@@ -239,37 +239,60 @@ void balanceo(tnodo *actual){
         printf("\nRevisando el valor: %i con FE: %i",aux->valor,fe1);
         if(fe1<=-2 && fe(aux->izq)<0){ // Rotacion simple a la derecha
             rsd(aux);
-        }if(fe1<=-2 && fe(aux->izq)>=0){ 
-            rdd(aux);
-        }if(fe1>=2 && fe(aux->der)>=0){
-            rsi(aux);
-        }if(fe1>=2 && fe(aux->der)<0){
-            rdi(aux);
+        }else{
+            if(fe1<=-2 && fe(aux->izq)<=0){ // Rptacion doble a la derecha
+                rdd(aux);
+            }else{
+                if(fe1>=2 && fe(aux->der)>=0){ // Rotacion simple a la izquierda
+                    rsi(aux);
+                }else{
+                    if(fe1>=2 && fe(aux->der)<0){ // Rotacion doble a la izquierda
+                        rdi(aux);
+                    }
+                }
+            }
         }
         aux=aux->papa;
     }
 }
-void rsi(tnodo *actual){ //Tiene errores al hacer la rotacion
+void rsi(tnodo *actual){ 
     tnodo *rp, *temp2;
     printf("\nRotacion simple a la izquierda");
     rp=actual->der;
+    temp2=rp->izq;
     rp->papa=actual->papa;
+    actual->der=temp2;
+    if(temp2!=NULL){
+       temp2->papa=actual; 
+    }
     rp->izq=actual;
-    actual->der=NULL;
     if(rp->papa==NULL){
         arbol=rp;
     }else{
         actual->papa->der=rp;
-        actual->papa=rp;
     }
-    printf("\t %i",arbol->valor);
+    actual->papa=rp;
 }
 void rdi(tnodo *actual){
     printf("\nRotacion doble a la izquierda");
 }
 void rsd(tnodo *actual){
+    tnodo *rp, *temp2;
     printf("\nRotacion simple a la derecha");
-
+    rp=actual->izq;
+    temp2=rp->der;
+    rp->papa=actual->papa;
+    actual->izq=temp2;
+    if(temp2!=NULL){
+        temp2->papa=actual;
+    }
+    rp->der=actual;
+    if(rp->papa==NULL){
+        arbol=rp;
+    }else{
+        actual->papa->izq=rp;
+    }
+    actual->papa=rp;
 }
 void rdd(tnodo *actual){
     printf("\nRotacion doble a la derecha");
