@@ -30,6 +30,7 @@ int altura(tnodo *nodo);
 int fe(tnodo *actual);
 void balanceo(tnodo *actual);
 void imprimir(tnodo *x);
+// Declaraciones De rotaciones
 void rsi(tnodo *actual);
 void rdi(tnodo *actual);
 void rsd(tnodo *actual);
@@ -240,7 +241,7 @@ void balanceo(tnodo *actual){
         if(fe1<=-2 && fe(aux->izq)<0){ // Rotacion simple a la derecha
             rsd(aux);
         }else{
-            if(fe1<=-2 && fe(aux->izq)<=0){ // Rptacion doble a la derecha
+            if(fe1<=-2 && fe(aux->izq)>=0){ // Rotacion doble a la derecha
                 rdd(aux);
             }else{
                 if(fe1>=2 && fe(aux->der)>=0){ // Rotacion simple a la izquierda
@@ -255,7 +256,7 @@ void balanceo(tnodo *actual){
         aux=aux->papa;
     }
 }
-void rsi(tnodo *actual){ 
+void rsi(tnodo *actual){ // Funcion de Rotacion Simple a la Izquierda
     tnodo *rp, *temp2;
     printf("\nRotacion simple a la izquierda");
     rp=actual->der;
@@ -269,14 +270,22 @@ void rsi(tnodo *actual){
     if(rp->papa==NULL){
         arbol=rp;
     }else{
-        actual->papa->der=rp;
+        if(rp->papa->valor < rp->valor){
+            actual->papa->der=rp;
+        }else{
+            actual->papa->izq=rp;
+        }
     }
     actual->papa=rp;
 }
-void rdi(tnodo *actual){
+void rdi(tnodo *actual){ // Rotacion Doble a la Izquierda
+    tnodo *q;
     printf("\nRotacion doble a la izquierda");
+    q=actual->der;
+    rsd(q);
+    rsi(actual);
 }
-void rsd(tnodo *actual){
+void rsd(tnodo *actual){ // Funcion de Rotacion Simple a la Derecha
     tnodo *rp, *temp2;
     printf("\nRotacion simple a la derecha");
     rp=actual->izq;
@@ -290,12 +299,20 @@ void rsd(tnodo *actual){
     if(rp->papa==NULL){
         arbol=rp;
     }else{
-        actual->papa->izq=rp;
+        if(rp->papa->valor < rp->valor){
+            actual->papa->der=rp;
+        }else{
+            actual->papa->izq=rp;
+        }
     }
     actual->papa=rp;
 }
-void rdd(tnodo *actual){
+void rdd(tnodo *actual){ // Rotacion Dobale a la Derecha 
+    tnodo *q;
     printf("\nRotacion doble a la derecha");
+    q=actual->izq;
+    rsi(q);
+    rsd(actual);
 }
 void imprimir(tnodo *x){
     if(x!=NULL){
@@ -308,7 +325,3 @@ void imprimir(tnodo *x){
         printf("---\n");
     }
 }
-
-
-
-
