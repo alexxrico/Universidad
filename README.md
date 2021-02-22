@@ -1,2 +1,2 @@
 # Universidad
-Prueba de subir archivos a github para depues guardar mis codigos de universidad
+Archivos de programas de la univercidad 
