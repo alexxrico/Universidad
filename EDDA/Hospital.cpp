@@ -22,6 +22,7 @@ void heapify(int actual);
 void minimo(void);
 void atender(void);
 void vaciar(int posicion);
+void heapifyInv(int pos);
 void mostrar(void);
 int papa(int actual);
 int izq(int papa);
@@ -49,6 +50,7 @@ int main(){
                 break;
             }
             case '3':{
+                atender();
                 break;
             }
             case '4':{
@@ -71,28 +73,49 @@ void insertar(void){
         cin.getline(nodo[tam].nombre, 50, '\n');
         cout<<"Prioridad: ";
         cin>>nodo[tam].valor;
-        heapify(nodo[tam].valor);
         tam++;
+        heapify(tam-1);
     }
 }
 void atender(void){
     tnodo aux;
-    if(tam<0){
+    if(tam<=0){
         cout<<"No hay pacientes por atender, toma un cafe :D"<<endl;
     }else{
         cout<<"Favor de atender a: "<<nodo[0].nombre<<endl;
         cout<<"Con prioridad #"<<nodo[0].valor<<endl;
-        aux=nodo[tam-1];
         nodo[0]=nodo[tam-1];
-        vaciar(tam-1);
+        vaciar(tam-1); 
         tam--;
+        heapifyInv(0); 
     }
 }
 void vaciar(int pos){
     char nombre[5];
-    nodo[pos].valor=NULL;
+    nodo[pos].valor=999;
     for(int i=0; i<50; i++){
         nodo[pos].nombre[i]='\0';
+    }
+}
+void heapifyInv(int pos){
+    tnodo aux;
+    int hi = izq(pos);
+    int hd = der(pos);
+    int menor;
+    cout<<"hi->"<<hi<<"\thd->"<<hd<<endl;
+    if(hi<tam && hd<tam){
+        if(nodo[hi].valor < nodo[hd].valor){
+            menor=hi;
+        }else{
+            menor=hd;
+        }
+        cout<<"->"<<nodo[pos].valor<<"\t"<<nodo[menor].valor<<endl;
+        if(nodo[pos].valor > nodo[menor].valor){
+            aux=nodo[pos];
+            nodo[pos]=nodo[menor];
+            nodo[menor]=aux;
+            heapifyInv(menor);
+        }
     }
 }
 void heapify(int actual){
@@ -134,7 +157,7 @@ int papa(int actual){
 int izq(int papa){
     int a=-1;
     if((2*papa+1)<MAX){
-        a=2*papa+2;
+        a=2*papa+1;
     }
     return a;
 }
