@@ -21,6 +21,7 @@ void insertar(void);
 void heapify(int actual);
 void minimo(void);
 void atender(void);
+void vaciar(int posicion);
 void mostrar(void);
 int papa(int actual);
 int izq(int papa);
@@ -72,6 +73,26 @@ void insertar(void){
         cin>>nodo[tam].valor;
         heapify(nodo[tam].valor);
         tam++;
+    }
+}
+void atender(void){
+    tnodo aux;
+    if(tam<0){
+        cout<<"No hay pacientes por atender, toma un cafe :D"<<endl;
+    }else{
+        cout<<"Favor de atender a: "<<nodo[0].nombre<<endl;
+        cout<<"Con prioridad #"<<nodo[0].valor<<endl;
+        aux=nodo[tam-1];
+        nodo[0]=nodo[tam-1];
+        vaciar(tam-1);
+        tam--;
+    }
+}
+void vaciar(int pos){
+    char nombre[5];
+    nodo[pos].valor=NULL;
+    for(int i=0; i<50; i++){
+        nodo[pos].nombre[i]='\0';
     }
 }
 void heapify(int actual){
