@@ -1,0 +1,49 @@
+<mxfile host="65bd71144e" modified="2021-03-10T06:55:10.250Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.54.1 Chrome/87.0.4280.141 Electron/11.3.0 Safari/537.36" version="14.2.4" etag="TegnB4SMnOClv-859FFz" type="embed">
+    <diagram id="9yNkAFnFyyodOkc2B3y5" name="Página-1">
+        <mxGraphModel dx="485" dy="813" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="4" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="50" y="220" width="170" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Socios" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="4">
+                    <mxGeometry width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="+ No. Socio: Int&lt;br&gt;&lt;br&gt;+ Nombre: String&lt;br&gt;&lt;br&gt;+ Direccion: String&lt;br&gt;&lt;br&gt;+ Numero libros prestados: Int&lt;br&gt;&lt;br&gt;+ More than 10: Boolean&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="4">
+                    <mxGeometry y="30" width="170" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="350" y="220" width="170" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Prestamos" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="5">
+                    <mxGeometry width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="+ Codigo: int&lt;br&gt;&lt;br&gt;+ No. Socio: int&lt;br&gt;&lt;br&gt;+ Fecha: date" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="5">
+                    <mxGeometry y="30" width="170" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="630" y="220" width="170" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Libros" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8">
+                    <mxGeometry width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="+ Codigo: int&lt;br&gt;&lt;br&gt;+ Titulo: String&lt;br&gt;&lt;br&gt;+ Autor: String&lt;br&gt;&lt;br&gt;+ Disponibilidad: Boolean&lt;br&gt;&lt;br&gt;+ Signature: String&lt;br&gt;&lt;br&gt;+ Ubicacion: String" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="8">
+                    <mxGeometry y="30" width="170" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="endArrow=classic;html=1;exitX=1.002;exitY=0.154;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="7">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="250" y="320" as="sourcePoint"/>
+                        <mxPoint x="300" y="270" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="" style="endArrow=classic;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" target="7">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="630" y="273" as="sourcePoint"/>
+                        <mxPoint x="590" y="260" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
