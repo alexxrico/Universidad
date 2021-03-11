@@ -1,6 +1,6 @@
 # Trabajos de la Universidad 
 
-_Trabajos y actividades de la universidad_
+_Archivos de programas y actividades de la universidad_
 
 ## Materias:
 
