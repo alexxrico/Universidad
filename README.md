@@ -1,18 +1,8 @@
-# Título del Proyecto
+# Trabajos de la Universidad 
 
-_Acá va un párrafo que describa lo que es el proyecto_
+_Trabajos y actividades de la universidad_
 
-## Comenzando 🚀
+## Materias:
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
-
-Mira **Deployment** para conocer como desplegar el proyecto.
-
-
-### Pre-requisitos 📋
-
-_Que cosas necesitas para instalar el software y como instalarlas_
-
-```
-Da un ejemplo
-```
+_EDDA: Estructuras De Datos Avanzada._
+_POOA: Programacion Orientada a Objetos Anvanzada._
