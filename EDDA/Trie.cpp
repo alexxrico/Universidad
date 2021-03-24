@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #define MAX 28
+#define CHAR_TO_INDEX(c) ((int)c - (int)'a') 
 using namespace std;
 typedef struct nodo{
 	struct nodo *hijos[MAX];
@@ -21,10 +22,14 @@ void Insertar(NODO *raiz, string palabra);
 bool Buscar(NODO *raiz, string palabra);
 NODO *Borrar(NODO *raiz, string palabra, int profundidad);
 bool Vacio(NODO *raiz);
+int ImpPrefijo(NODO *raiz, string palabra);
+bool UltimoNodo(NODO *raiz);
+void Prefijos(NODO *raiz, string prefij);
 
 int main(int argc, char const *argv[]){
 	string palabra;
 	char opc;
+	int aux;
     NODO *raiz = crear();
 	do{
 		system("cls");
@@ -57,8 +62,10 @@ int main(int argc, char const *argv[]){
 				Borrar(raiz,palabra,0);
 				break;
 			}
-			case '4':{
-				// Autocompletar
+			case '4':{	// Autocompletar
+				cout<<"Prfijo de palabra: ";
+				cin>>palabra;
+				aux=0;
 			}
 			default:{
 				cout<<"Esa opcion no es valida..."<<endl;
@@ -131,4 +138,49 @@ bool Vacio(NODO *raiz){
 	}
 	return true;
 }
-
+int ImpPrefijo(NODO *raiz, string palabra){
+	NODO *prefijo = raiz;
+	bool pal, ultimo;
+	int i, indice, n=palabra.length();
+	for(i=0; i<n; i++){
+		indice=CHAR_TO_INDEX(palabra[i]);
+		if(!prefijo->hijos[indice]){
+			return 0;
+		}
+		prefijo = prefijo->hijos[indice];
+	}
+	pal = (prefijo->fin==true);
+	ultimo = UltimoNodo(prefijo);
+	if(pal && ultimo){
+		cout<<palabra<<endl;
+		return -1;
+	}
+	if(!ultimo){
+		string pref=palabra;
+		Prefijos(prefijo, pref);
+		return 1;
+	}
+}
+bool UltimoNodo(NODO *raiz){
+	for(int i=0; i<MAX; i++){
+		if(raiz->hijos[i]){
+			return 0;
+		}
+	}
+	return 1;
+}
+void Prefijos(NODO *raiz, string prefij){
+	if(raiz->fin){
+		cout<<prefij<<endl;
+	}
+	if(UltimoNodo(raiz)){
+		return;
+	}
+	for(int i=0; i<MAX; i++){
+		if(raiz->hijos[i]){
+			prefij.push_back(97+i);
+			Prefijos(raiz->hijos[i],prefij);
+			prefij.pop_back();
+		}
+	}
+}
