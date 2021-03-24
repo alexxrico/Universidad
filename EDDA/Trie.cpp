@@ -65,7 +65,14 @@ int main(int argc, char const *argv[]){
 			case '4':{	// Autocompletar
 				cout<<"Prfijo de palabra: ";
 				cin>>palabra;
-				aux=0;
+				aux=ImpPrefijo(raiz,palabra);
+				if(aux==-1){
+					cout<<"No hay prefijos..."<<endl;
+				}
+				if(aux==0){
+					cout<<"No hay prefijos..."<<endl;
+				}
+				break;
 			}
 			default:{
 				cout<<"Esa opcion no es valida..."<<endl;
