@@ -16,17 +16,16 @@ typedef struct nodo{
 	bool fin;
 }NODO;
 
-NODO *raiz = NULL;
-
 NODO *crear(void);
 void Insertar(NODO *raiz, string palabra);
 bool Buscar(NODO *raiz, string palabra);
-NODO *Borrar();
+NODO *Borrar(NODO *raiz, string palabra, int profundidad);
+bool Vacio(NODO *raiz);
 
 int main(int argc, char const *argv[]){
 	string palabra;
 	char opc;
-    raiz = crear();
+    NODO *raiz = crear();
 	do{
 		system("cls");
 		cout<<"1) Ingresar\n2) Buscar\n3) Eliminar\n4) Autocompletar\n0) Salir"<<endl;
@@ -53,7 +52,9 @@ int main(int argc, char const *argv[]){
 				break;
 			}
 			case '3':{	// Eliminar
-				
+				cout<<"Palabra por eliminar: ";
+				cin>>palabra;
+				Borrar(raiz,palabra,0);
 				break;
 			}
 			case '4':{
@@ -99,3 +100,35 @@ bool Buscar(NODO *raiz, string palabra){
 	}
 	return (buscar!=NULL && buscar->fin);
 }
+NODO *Borrar(NODO *raiz, string palabra, int profundidad){
+	int indice;
+	if(!raiz){
+		return NULL;
+	}
+	if(profundidad==palabra.size()){
+		if(raiz->fin){
+			raiz->fin = false;
+		}
+		if(Vacio(raiz)){
+			delete(raiz);
+			raiz=NULL;
+		}
+		return raiz;
+	}
+	indice=palabra[profundidad]-'a';
+	raiz->hijos[indice]=Borrar(raiz->hijos[indice],palabra,profundidad+1);
+	if(Vacio(raiz) && raiz->fin==false){
+		delete(raiz);
+		raiz=NULL;
+	}
+	return raiz;
+}
+bool Vacio(NODO *raiz){
+	for(int i=0; i<MAX; i++){
+		if(raiz->hijos[i]){
+			return false;
+		}
+	}
+	return true;
+}
+
