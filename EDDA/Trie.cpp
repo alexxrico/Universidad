@@ -20,7 +20,7 @@ NODO *raiz = NULL;
 
 NODO *crear(void);
 void Insertar(NODO *raiz, string palabra);
-bool Buscar();
+bool Buscar(NODO *raiz, string palabra);
 NODO *Borrar();
 
 int main(int argc, char const *argv[]){
@@ -36,17 +36,25 @@ int main(int argc, char const *argv[]){
 			case '0':{
 				cout<<"Que tenga un buen dia :D"<<endl;
 			}
-			case '1':{ // Insertar
+			case '1':{	// Insertar
 				cout<<"Ingrese la palabra a insertar: ";
 				cin>>palabra;
 				Insertar(raiz,palabra);
 				break;
 			}
-			case '2':{
-				// Buscar
+			case '2':{	// Buscar
+				cout<<"Palabra a buscar: ";
+				cin>>palabra;
+				if(Buscar(raiz,palabra)==true){
+					cout<<"La palabra fue encontrada!"<<endl;
+				}else{
+					cout<<"Esa palabra no existe"<<endl;
+				}
+				break;
 			}
-			case '3':{
-				// Eliminar
+			case '3':{	// Eliminar
+				
+				break;
 			}
 			case '4':{
 				// Autocompletar
@@ -78,4 +86,16 @@ void Insertar(NODO *raiz, string palabra){
 		nuevo = nuevo->hijos[indice];
 	}
 	nuevo->fin = true;
+}
+bool Buscar(NODO *raiz, string palabra){
+	int indice;
+	NODO *buscar = raiz;
+	for(int i=0; i<palabra.length(); i++){
+		indice=palabra[i]-'a';
+		if(!buscar->hijos[indice]){
+			return false;
+		}
+		buscar = buscar->hijos[indice];
+	}
+	return (buscar!=NULL && buscar->fin);
 }
