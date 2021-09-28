@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // Creacion de un Objeto
+        var persona = {
+            nombre: "Alejandro Rico",
+            edad: 22,
+            genero: "Masculino",
+            intereses: ['Estudiar','Dibujar'],
+            saludo: function(){
+                alert('Hola soy '+this.nombre);
+            }
+        }
+        //persona.saludo();
+
+        // Arreglo de objetos
+        let personas = [
+            {
+                nombre: "Richard Barson",
+                promedio: 4.5 ,
+                company: "Virgin",
+            },
+            {
+                nombre: "Elon Musk",
+                promedio: 199.6 ,
+                company: "Tesla",
+            },
+            {
+                nombre: "Lawrence J. Ellison",
+                promedio: 118.1 ,
+                company: "Oracle",
+            },
+            {
+                nombre: "Bill Gates",
+                promedio: 131.7 ,
+                company: "Microsoft",
+            },
+            {
+                nombre: "Jeff Bezos",
+                promedio: 198.7 ,
+                company: "Amazon",
+            },
+            {
+                nombre: "Carlos Slim",
+                promedio: 77 ,
+                company: "Telmex",
+            },
+        ]
+        
+        //console.log(personas.promedio.sort());
+        personas.sort((a,b) => {
+            return a.promedio = b.promedio;
+        })
+
+        persona.foreach((elemento) => {
+            console.log['$(elemnto.nombre): $(elemento.promedio):'];
+        })
+
+
+    </script>
+
+</body>
+</html>
