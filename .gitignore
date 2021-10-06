@@ -1,4 +1,7 @@
-*.out
+# Executables
 *.exe
+*.out
+*.app
+
 *.json
 /.vscode
