@@ -11,6 +11,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+using namespace std;
+
 typedef struct snodo
 {
     int valor;
@@ -105,8 +107,11 @@ int main(int argc, const char * argv[]) {
                 }
             }
             printf("\n");
-            system("pause");
-            system("cls");
+            cin.ignore();
+            cout << "Presione la tecla Enter para continuar."; //puedes cambiar tu mensaje
+            cin.get();
+            //system("pause");
+            system("clear");
         }while(opc!=8);
 }
 int fe(tnodo *actual){ //Factor de equilibrio
