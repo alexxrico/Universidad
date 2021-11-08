@@ -8,6 +8,7 @@
 */
 #include<iostream>
 #include<string.h>
+#include <stdio_ext.h>
 #define MAX 100
 using namespace std;
 typedef struct snodo{
@@ -32,7 +33,7 @@ int main(){
     char opc;
     int valor;
     do{
-        system("cls");
+        system("clear");
         cout<<"1) Nuevo paciente\n2) Conocer siguiten paciente\n3) Atender proximo paciente\n4) Mostrar pacientes\n0) Salir"<<endl;
         cout<<"Opcion: ";
         cin>>opc;
@@ -62,14 +63,16 @@ int main(){
                 break;
             }
         }
-        system("pause");
+        cin.ignore();
+        cout << "Presione la tecla Enter para continuar."; //puedes cambiar tu mensaje
+        cin.get();
     } while (opc!='0');
     return 0;
 }
 void insertar(void){
     if(tam<MAX){
         cout<<"Nombre del paciente: ";
-        fflush(stdin);
+        __fpurge(stdin);
         cin.getline(nodo[tam].nombre, 50, '\n');
         cout<<"Prioridad: ";
         cin>>nodo[tam].valor;
@@ -168,6 +171,3 @@ int der(int papa){
     }
     return a;
 }
-/*
-    
- */

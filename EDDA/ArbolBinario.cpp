@@ -110,7 +110,6 @@ int main(int argc, const char * argv[]) {
             cin.ignore();
             cout << "Presione la tecla Enter para continuar."; //puedes cambiar tu mensaje
             cin.get();
-            //system("pause");
             system("clear");
         }while(opc!=8);
 }
