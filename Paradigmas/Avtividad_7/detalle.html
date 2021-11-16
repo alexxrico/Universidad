@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles</title>
+</head>
+<body>
+    <button onclick="location.href= 'index.html'">Atras</button>
+    <p id="id"></p>
+    <h1 id="title"></h1>
+    <img id="image">
+
+    <script>
+
+        const url = new URL(window.location.href);
+        console.log(url);
+        const param = url.searchParams;
+        const id = param.get('id');
+        console.log(id);
+        document.getElementById('id').innerHTML = id; 
+
+        const urlDetail = `https://jsonplaceholder.typicode.com/photos/${id}`;
+        fetch(urlDetail)
+            .then(response => response.json())
+            .then(image => {
+                document.getElementById ('title').innerHTML = image.title;
+                document.getElementById('image').src = image.url;
+            });
+
+        
+    </script>
+</body>
+</html>
